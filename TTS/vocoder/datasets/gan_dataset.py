@@ -150,4 +150,6 @@ class GANDataset(Dataset):
 
         if self.use_noise_augment and self.is_training and self.return_segments:
             audio = audio + (1 / 32768) * torch.randn_like(audio)
+
+        self.cache[idx] = (audio, mel)
         return (mel, audio)
