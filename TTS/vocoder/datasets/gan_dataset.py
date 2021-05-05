@@ -117,6 +117,7 @@ class GANDataset(Dataset):
                 audio = self.ap.load_wav(wavpath)
                 audio, _ = self._pad_short_samples(audio)
                 mel = self.ap.melspectrogram(audio)
+                self.cache[idx] = (audio, mel)
         else:
 
             # load precomputed features
@@ -128,6 +129,7 @@ class GANDataset(Dataset):
                 audio = self.ap.load_wav(wavpath)
                 mel = np.load(feat_path)
                 audio, mel = self._pad_short_samples(audio, mel)
+                self.cache[idx] = (audio, mel)
 
         # correct the audio length wrt padding applied in stft
         audio = np.pad(audio, (0, self.hop_len), mode="edge")
@@ -151,5 +153,4 @@ class GANDataset(Dataset):
         if self.use_noise_augment and self.is_training and self.return_segments:
             audio = audio + (1 / 32768) * torch.randn_like(audio)
 
-        self.cache[idx] = (audio, mel)
         return (mel, audio)
