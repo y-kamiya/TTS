@@ -1,6 +1,6 @@
 {
     "run_name": "multiband-melgan",
-    "run_description": "multiband melgan mean-var scaling" for jsut dataset,
+    "run_description": "multiband melgan mean-var scaling for jsut dataset",
 
     // AUDIO PARAMETERS
     "audio":{
