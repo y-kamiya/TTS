@@ -100,6 +100,17 @@
 
     "reinit_layers": [],    // give a list of layer names to restore from the given checkpoint. If not defined, it reloads all heuristically matching layers.
 
+    // DATASETS
+    "datasets":   // List of datasets. They all merged and they get different speaker_ids.
+        [
+            {
+                "name": "ljspeech",
+                "path": "/home/erogol/Data/LJSpeech-1.1/",
+                "meta_file_train": "metadata.csv",
+                "meta_file_val": null
+            }
+        ],
+
     // TRAINING
     "batch_size": 64,       // Batch size for training. Lower values than 32 might cause hard to learn attention. It is overwritten by 'gradual_training'.
 
